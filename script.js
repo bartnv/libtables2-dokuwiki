@@ -587,7 +587,9 @@ function renderTableGrid(table, data, sub) {
           continue;
         }
       }
-      var cell = $('<td class="lt-cell"></td>');
+      var cell = $('<td/>');
+      var classes = [ 'lt-cell' ];
+      if (data.options.class && data.options.class[c]) classes.push(data.options.class[c]);
       if (typeof(fields[c]) == 'string') var input = $('<input type="text" name="' + fields[c] + '">');
       else if (Object.keys(fields[c]).length == 1) var input = $('<input type="text" name="' + fields[c][0] + '">');
       else if (fields[c].type == 'multiline') {
@@ -641,6 +643,7 @@ function renderTableGrid(table, data, sub) {
           }
         });
       }
+      cell.addClass(classes.join(' '));
       cell.append(input);
       row.append(cell);
     }
