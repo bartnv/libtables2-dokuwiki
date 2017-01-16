@@ -188,6 +188,7 @@ switch ($mode) {
     if (!empty($table['options']['titlequery'])) $data['title'] = lt_query_single($table['options']['titlequery'], $params);
     else $data['title'] = $table['title'];
     $data['options'] = $table['options'];
+    if (!empty($data['options']['tablefunction']['hidecondition'])) $data['options']['tablefunction']['hidecondition'] = lt_query_single($data['options']['tablefunction']['hidecondition'], $params);
     if (!empty($data['options']['selectany'])) {
       $tmp = lt_query('SELECT ' . $data['options']['selectany']['fields'][1] . ' FROM ' . $data['options']['selectany']['linktable'] . ' WHERE ' . $data['options']['selectany']['fields'][0] . ' = ?', $params);
       $data['options']['selectany']['links'] = array_column($tmp['rows'], 0);
@@ -236,6 +237,7 @@ switch ($mode) {
     }
     else {
       $data['crc'] = $crc;
+      if (!empty($table['options']['tablefunction']['hidecondition'])) $data['options']['tablefunction']['hidecondition'] = lt_query_single($table['options']['tablefunction']['hidecondition'], $params);
       print json_encode($data);
     }
     break;
@@ -428,7 +430,7 @@ switch ($mode) {
         $err = $dbh->errorInfo();
         fatalerr("SQL prepare error: " . $err[2]);
       }
-      if (!($stmt->execute())) {
+      if (!($stmt->execute($params))) {
         $err = $stmt->errorInfo();
         fatalerr("SQL execute error: " . $err[2]);
       }
