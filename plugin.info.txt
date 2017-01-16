@@ -1,0 +1,7 @@
+base   libtables2
+author Bart Noordervliet
+email  bart@mmvi.nl
+date   2017-01-16
+name   libtables2 plugin
+desc   Live-updating and editable tables
+url    https://github.com/bartnv/libtables2-dokuwiki
