@@ -245,6 +245,10 @@ function refreshTable(table, key) {
         var options = tables[key].data.options;
         if (options.sum) updateSums(this.find('tfoot'), tables[key].data);
         if (options.callbacks && options.callbacks.change) window.setTimeout(options.callbacks.change.replace('#src', this.parent().data('source')), 0);
+        if (options.tablefunction && typeof options.tablefunction.hidecondition != 'undefined') {
+          if (options.tablefunction.hidecondition) this.find('.lt-tablefunc').hide();
+          else this.find('.lt-tablefunc').show();
+        }
       }
       tables[key].doingajax = false;
     }
