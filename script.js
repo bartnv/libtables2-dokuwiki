@@ -1311,11 +1311,7 @@ function doDelete(el) {
         }
         newrows.remove(r);
         updateTable(this, table, newrows);
-        if (table.options.trigger) {
-          if (table.options.trigger.indexOf(':') > 0) var triggered = document.getElementById(table.options.trigger);
-          else var triggered = document.getElementById(table.block + ':' + table.options.trigger);
-          loadOrRefreshCollection($(triggered).parent());
-        }
+        if (table.options.delete.trigger) loadOrRefreshCollection($('#'+table.options.delete.trigger));
       }
     }
   });
