@@ -464,7 +464,7 @@ function renderTableGrid(table, data, sub) {
     trstr += '\', \'prev\')">&lt;</a> <span class="lt-pages"></span> <a href="javascript:goPage(\'' + table.attr('id') + '\', \'next\')">&gt;</a></th></tr>';
     thead.append(trstr);
   }
-  if (data.rows.length || data.rowcount) { // rowcount is set for exports with nopreview=true
+  if (!data.options.insert || data.rows.length || data.rowcount) { // rowcount is set for exports with nopreview=true
     var row = $('<tr class="lt-row"/>');
     if (data.options.selectone) {
       if (typeof selectones == 'undefined') selectones = 1;
